@@ -2,31 +2,14 @@
 var crsr = document.querySelector("#cursor");
 var blr = document.querySelector("#cursor-blur");
 
-document.addEventListener("mousemove", function (dets) {
-    crsr.style.left = dets.x + "px";
-    crsr.style.top = dets.y + "px";
-    blr.style.left = dets.x - 75 + "px"; // Center the blur on cursor
-    blr.style.top = dets.y - 75 + "px";
-});
-
-// Navbar link hover effect on cursor (optional, can be removed if not needed)
-// This effect is commented out as it might conflict with the navbar's own hover.
-// You can enable it if you like.
-/*
-var navLinks = document.querySelectorAll(".nav-links a");
-navLinks.forEach(function (elem) {
-    elem.addEventListener("mouseenter", function () {
-        crsr.style.scale = 3;
-        crsr.style.border = "1px solid #fff"; // Fixed typo: boarder -> border
-        crsr.style.backgroundColor = "transparent";
+if (crsr && blr) {
+    document.addEventListener("mousemove", function (dets) {
+        crsr.style.left = dets.x + "px";
+        crsr.style.top = dets.y + "px";
+        blr.style.left = dets.x - 75 + "px";
+        blr.style.top = dets.y - 75 + "px";
     });
-    elem.addEventListener("mouseleave", function () {
-        crsr.style.scale = 1;
-        crsr.style.border = "0px solid #000";
-        crsr.style.backgroundColor = "#f3ca8c";
-    });
-});
-*/
+}
 
 // GSAP Animations
 gsap.registerPlugin(ScrollTrigger);
@@ -44,9 +27,9 @@ gsap.to("#nav", {
     },
 });
 
-// Home section background color change (if you want the main content to darken as you scroll)
+// Home section video overlay effect
 gsap.to("#home", {
-    backgroundColor: "#0a0a0a",
+    backgroundColor: "rgba(0,0,0,0.7)",
     scrollTrigger: {
         trigger: "#home",
         scroller: "body",
@@ -56,101 +39,245 @@ gsap.to("#home", {
     },
 });
 
-// About section elements animation
-gsap.from("#info img, #info-in", {
-    y: 80,
-    opacity: 0,
-    duration: 1.5,
-    stagger: 0.3,
+// About section animations
+gsap.from("#info", {
     scrollTrigger: {
         trigger: "#info",
         scroller: "body",
         start: "top 80%",
         end: "top 50%",
-        scrub: 2,
+        scrub: 1,
     },
+    y: 50,
+    opacity: 0,
+    duration: 1
 });
 
-gsap.from("#vision img, #vision-content", {
-    y: 80,
+gsap.from("#info img", {
+    scrollTrigger: {
+        trigger: "#info",
+        scroller: "body",
+        start: "top 80%",
+        end: "top 50%",
+        scrub: 1,
+    },
+    x: -50,
     opacity: 0,
-    duration: 1.5,
-    stagger: 0.3,
+    duration: 1
+});
+
+gsap.from("#info-in", {
+    scrollTrigger: {
+        trigger: "#info",
+        scroller: "body",
+        start: "top 80%",
+        end: "top 50%",
+        scrub: 1,
+    },
+    x: 50,
+    opacity: 0,
+    duration: 1
+});
+
+// Vision section animations
+gsap.from("#vision", {
     scrollTrigger: {
         trigger: "#vision",
         scroller: "body",
         start: "top 80%",
         end: "top 50%",
-        scrub: 2,
+        scrub: 1,
     },
+    y: 50,
+    opacity: 0,
+    duration: 1
 });
 
-gsap.from("#message img, #message-id", {
-    y: 80,
+gsap.from("#vision img", {
+    scrollTrigger: {
+        trigger: "#vision",
+        scroller: "body",
+        start: "top 80%",
+        end: "top 50%",
+        scrub: 1,
+    },
+    x: 50,
     opacity: 0,
-    duration: 1.5,
-    stagger: 0.3,
+    duration: 1
+});
+
+gsap.from("#vision-content", {
+    scrollTrigger: {
+        trigger: "#vision",
+        scroller: "body",
+        start: "top 80%",
+        end: "top 50%",
+        scrub: 1,
+    },
+    x: -50,
+    opacity: 0,
+    duration: 1
+});
+
+// President's message animations
+gsap.from("#message", {
     scrollTrigger: {
         trigger: "#message",
         scroller: "body",
         start: "top 80%",
         end: "top 50%",
-        scrub: 2,
+        scrub: 1,
     },
+    y: 50,
+    opacity: 0,
+    duration: 1
 });
 
-// Cards animation
-gsap.from(".card", {
-    scale: 0.8,
-    opacity: 0,
-    duration: 1,
-    stagger: 0.1,
+gsap.from("#message img", {
     scrollTrigger: {
-        trigger: "#card-containers",
+        trigger: "#message",
         scroller: "body",
         start: "top 80%",
         end: "top 50%",
-        scrub: 2,
+        scrub: 1,
     },
+    x: -50,
+    opacity: 0,
+    duration: 1
 });
 
-// Page4 heading animation
-gsap.from("#page4 h1", {
+gsap.from("#message-id", {
+    scrollTrigger: {
+        trigger: "#message",
+        scroller: "body",
+        start: "top 80%",
+        end: "top 50%",
+        scrub: 1,
+    },
+    x: 50,
+    opacity: 0,
+    duration: 1
+});
+
+// Scrolling text animation
+gsap.to("#scroller-in", {
+    scrollTrigger: {
+        trigger: "#scroller",
+        scroller: "body",
+        start: "top 80%",
+        end: "top 30%",
+        scrub: 1,
+    },
+    opacity: 1,
+    duration: 1
+});
+
+// Events section animations
+gsap.from("#events .section-header", {
+    scrollTrigger: {
+        trigger: "#events",
+        scroller: "body",
+        start: "top 80%",
+        end: "top 60%",
+        scrub: 1,
+    },
+    y: 30,
+    opacity: 0,
+    duration: 1
+});
+
+gsap.from(".showcase-card", {
+    scrollTrigger: {
+        trigger: "#events",
+        scroller: "body",
+        start: "top 70%",
+        end: "top 40%",
+        scrub: 1,
+    },
     y: 50,
     opacity: 0,
-    duration: 1,
+    stagger: 0.2,
+    duration: 1
+});
+
+// Page4 section animations
+gsap.from("#page4 .header-tag, #page4 .header-title, #page4 .header-description", {
     scrollTrigger: {
         trigger: "#page4",
         scroller: "body",
         start: "top 80%",
-        end: "top 70%",
+        end: "top 60%",
         scrub: 1,
     },
+    y: 30,
+    opacity: 0,
+    stagger: 0.1,
+    duration: 1
 });
 
-// Page4 elements animation
-gsap.from(".elem", {
-    scale: 0.8,
-    opacity: 0,
-    duration: 1,
-    stagger: 0.2,
+gsap.from(".prof-card", {
     scrollTrigger: {
         trigger: "#page4",
         scroller: "body",
         start: "top 70%",
-        end: "top 50%",
-        scrub: 2,
+        end: "top 40%",
+        scrub: 1,
     },
+    y: 50,
+    opacity: 0,
+    stagger: 0.2,
+    duration: 1
 });
 
-// Smooth scroll for arrow (optional enhancement)
-document.querySelector('#arrow').addEventListener('click', function() {
+gsap.from(".stats-row", {
+    scrollTrigger: {
+        trigger: "#page4",
+        scroller: "body",
+        start: "top 60%",
+        end: "top 40%",
+        scrub: 1,
+    },
+    y: 30,
+    opacity: 0,
+    duration: 1
+});
+
+// Executive body section animations
+gsap.from("#e-body .section-header", {
+    scrollTrigger: {
+        trigger: "#e-body",
+        scroller: "body",
+        start: "top 80%",
+        end: "top 60%",
+        scrub: 1,
+    },
+    y: 30,
+    opacity: 0,
+    duration: 1
+});
+
+gsap.from(".member-card", {
+    scrollTrigger: {
+        trigger: "#e-body",
+        scroller: "body",
+        start: "top 70%",
+        end: "top 40%",
+        scrub: 1,
+    },
+    y: 50,
+    opacity: 0,
+    stagger: 0.1,
+    duration: 1
+});
+
+// Smooth scroll for arrow
+document.querySelector('#arrow')?.addEventListener('click', function() {
     document.querySelector('#about').scrollIntoView({ behavior: 'smooth' });
 });
 
-
-    AOS.init({
-        duration: 1000,
-        once: true,
-        offset: 100
-    });
+// AOS initialization
+AOS.init({
+    duration: 1000,
+    once: true,
+    offset: 100
+});
