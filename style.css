@@ -20,7 +20,7 @@ body {
 }
 
 /* ---------- Custom Cursor ---------- */
-#cursor {
+/* #cursor {
     height: 25px;
     width: 25px;
     background-color: #f3ca8c;
@@ -47,7 +47,7 @@ body {
     #cursor, #cursor-blur {
         display: none;
     }
-}
+} */
 
 /* ---------- Navigation Bar ---------- */
 #nav {
@@ -1627,4 +1627,5 @@ video {
         padding: 10px 25px;
         font-size: 0.95rem;
     }
+
 }
